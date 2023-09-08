@@ -53,8 +53,6 @@ export default function ItemListContainer({ greeting }) {
     }
   ]
 
-  
-
   //Simulo un timeout sobre el estado del loading para que muestre el spinner de carga
  setTimeout(() => {
   setIsLoading(false) 
