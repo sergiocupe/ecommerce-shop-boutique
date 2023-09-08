@@ -1,0 +1,33 @@
+.card-custom
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 22rem;
+}
+
+.imgProducto
+{
+
+  width: 120px;
+  height: 120px;
+}
+
+.titulo-custom
+{
+  font-weight: bold;
+  color:#1c4556;
+  font-size:1rem;
+}
+
+.descripcion-custom
+{
+  font-size:0.9rem;
+}
+
+.precio-custom
+{
+  font-size:2rem;
+  color:#000;
+}

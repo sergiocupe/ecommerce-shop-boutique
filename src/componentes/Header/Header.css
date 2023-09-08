@@ -1,0 +1,26 @@
+.logo
+{
+  padding-left: 120px;
+  width: 250px;
+}
+
+.navbar-custom {
+  background-color: #d2d2d2;
+  font-size: 1.1em;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 3rem;
+  padding-left: 2rem;
+}
+
+.links-custom
+{
+  padding-left: 50px;
+}
+
+.links-custom a {
+  color: #4f88a1;
+  text-decoration: none;
+}
+
