@@ -17,13 +17,13 @@ export default function Header () {
                   Inicio
               </Nav.Link>
               <Nav.Link>
-                  Quienes Somos
+                  Catálogo
               </Nav.Link>
               <Nav.Link>
-                  Productos
+                  Prendas Femenina
               </Nav.Link>
               <Nav.Link>
-                  Contáctenos
+                  Prendas Masculina
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
