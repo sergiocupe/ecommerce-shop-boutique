@@ -4,12 +4,11 @@
   align-items: center;
   justify-content: center;
   width: 20rem;
-  height: 25rem;
+  height: 26rem;
 }
 
-.imgProducto
+.imgProducto-custom
 {
-
   width: 120px;
   height: 120px;
 }
@@ -28,6 +27,12 @@
 
 .precio-custom
 {
-  font-size:2rem;
+  font-size:1.6rem;
   color:#000;
+}
+
+.stock-custom
+{
+  font-size:0.8rem;
+  font-weight: bold;
 }

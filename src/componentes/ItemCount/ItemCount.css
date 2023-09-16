@@ -1,0 +1,28 @@
+.botonCarrito-custom
+{
+  margin-left: 10px;
+}
+
+.iconoCarrito-custom
+{
+  padding-right: 5px;
+}
+
+.itemCount-custom
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.stockLabel-custom
+{
+  padding-top: 10px;
+}
+
+.inputStock-custom
+{
+  text-align: center;
+  width: 50px;
+}

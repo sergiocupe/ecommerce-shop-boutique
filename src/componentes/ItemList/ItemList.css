@@ -1,0 +1,8 @@
+.listadoProd-custom
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color:#205b74
+}

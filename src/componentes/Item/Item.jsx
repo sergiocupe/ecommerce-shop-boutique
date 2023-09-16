@@ -1,5 +1,6 @@
+import ItemCount from "../ItemCount/ItemCount"
 import "./Item.css"
-import { Button, Card } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 
 export default function Item({ prod }) {
   return (
@@ -7,7 +8,7 @@ export default function Item({ prod }) {
       <Card.Img
         variant="top"
         src={`${process.env.PUBLIC_URL}/productos/${prod.imagen}`}
-        className="imgProducto"
+        className="imgProducto-custom"
       />
       <Card.Body>
         <Card.Title className="titulo-custom">{prod.producto}</Card.Title>
@@ -15,8 +16,8 @@ export default function Item({ prod }) {
         <Card.Text>
           <span className="precio-custom">$ {prod.precio}</span>
         </Card.Text>
-        <Card.Text>
-          <Button variant="primary">AGREGAR</Button>
+        <Card.Text variant="footer">
+          <ItemCount stock={prod.stock}/>
         </Card.Text>
       </Card.Body>
     </Card>
