@@ -16,7 +16,7 @@ export default function Item({ prod }) {
           <span className="precio-custom">$ {prod.precio}</span>
         </Card.Text>
         <Card.Text variant="footer">
-          <Button variant="primary">Ver Detalle</Button>
+          <Button variant="primary" href={`/item/${prod.id}`}>Ver Detalle</Button>
         </Card.Text>
       </Card.Body>
     </Card>
