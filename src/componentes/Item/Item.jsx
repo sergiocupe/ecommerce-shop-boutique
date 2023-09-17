@@ -1,6 +1,5 @@
-import ItemCount from "../ItemCount/ItemCount"
 import "./Item.css"
-import { Card } from "react-bootstrap"
+import { Card, Button } from "react-bootstrap"
 
 export default function Item({ prod }) {
   return (
@@ -11,13 +10,13 @@ export default function Item({ prod }) {
         className="imgProducto-custom"
       />
       <Card.Body>
-        <Card.Title className="titulo-custom">{prod.producto}</Card.Title>
+        <Card.Title className="titulo-custom">{prod.titulo}</Card.Title>
         <Card.Text className="descripcion-custom">{prod.descripcion}</Card.Text>
         <Card.Text>
           <span className="precio-custom">$ {prod.precio}</span>
         </Card.Text>
         <Card.Text variant="footer">
-          <ItemCount stock={prod.stock}/>
+          <Button variant="primary">Ver Detalle</Button>
         </Card.Text>
       </Card.Body>
     </Card>

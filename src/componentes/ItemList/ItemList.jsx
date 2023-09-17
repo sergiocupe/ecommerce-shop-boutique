@@ -1,5 +1,5 @@
 import "./ItemList.css"
-import productos from "../../data/productos.json"
+import {pedirProductos} from "../../helpers/pedirProductos"
 import Item from "../Item/Item"
 import { Row, Col, Spinner } from "react-bootstrap"
 import { useState, useEffect } from "react"
@@ -8,19 +8,10 @@ export default function ItemList() {
   const [itemsProductos, setItemsProductos] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  const pedirProductos = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setIsLoading(false)
-        resolve(productos)
-        reject("Error")
-      }, 2000)
-    })
-  }
-
   useEffect(() => {
     pedirProductos()
       .then((res) => {
+        setIsLoading(false)
         setItemsProductos(res)
       })
       .catch((err) => {
