@@ -1,22 +1,8 @@
 import "./ItemDetails.css"
-import { pedirProductoPorId } from "../../helpers/pedirProductos"
 import ItemCount from "../ItemCount/ItemCount"
 import { Container, Row, Col } from "react-bootstrap"
-import { useState, useEffect } from "react"
 
-export default function ItemDetails({ id }) {
-  const [producto, setProducto] = useState([])
-
-  useEffect(() => {
-    pedirProductoPorId(id)
-      .then((res) => {
-        setProducto(res)
-      })
-      .catch((err) => {
-        setProducto([])
-      })
-  }, [id])
-
+export default function ItemDetails({ producto }) {
   return (
     <Container className="cardDetalle-custom">
       <Row>
