@@ -36,3 +36,18 @@
   font-size:0.8rem;
   font-weight: bold;
 }
+
+.botonVerDetalle-custom {
+  text-decoration: none;
+  background-color: #258ab6;
+  color: white;
+  padding: .5rem;
+  width: max-content;
+  border-radius: .5rem;
+  transition: .2s;
+}
+
+.botonVerDetalle-custom_hover {
+  background-color: black;
+  color: white;
+}

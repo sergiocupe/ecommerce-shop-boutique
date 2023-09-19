@@ -4,7 +4,7 @@
   "imagen": "campera.jpg",
   "descripcion": "Campera con cierre Capucha GDO 24/7 Hombre Slim Fit Hoodie.",
   "precio": "40.000",
-  "categoria":"Femenino",
+  "categoria":"Femeninas",
   "stock": 5
 },
 {
@@ -13,7 +13,7 @@
   "imagen": "camiseta.jpg",
   "descripcion": "Remera Camiseta Manga Larga Deportiva Premium. Ideal para todo tipo de deportes de entrenamientos.",
   "precio": "14.000",
-  "categoria":"Masculino",
+  "categoria":"Masculinas",
   "stock": 10
 },
 {
@@ -22,7 +22,7 @@
   "imagen": "jeans.jpg",
   "descripcion": "Jean elastizado de excelente calidad premium. Talles del 45 al 60, todos los colores.",
   "precio": "12.000",
-  "categoria":"Femenino",
+  "categoria":"Femeninas",
   "stock": 5
 },
 {
@@ -31,7 +31,7 @@
   "imagen": "remera.jpg",
   "descripcion": "Indumentaria laboral y publicitaria. Remeras, buzos, estampados, bordados.",
   "precio": "18.000",
-  "categoria":"Masculino",
+  "categoria":"Masculinas",
   "stock": 5
 },
 {
@@ -40,7 +40,7 @@
   "imagen": "pollera.jpg",
   "descripcion": "Pollera tableada que seguro querrás tener en tu placar, es de tela bengalina elastizada y te la ofrecemos en tres colores que de segur.o",
   "precio": "9.000",
-  "categoria":"Femenino",
+  "categoria":"Femeninas",
   "stock": 5
 },
 {
@@ -49,7 +49,7 @@
   "imagen": "swetter.jpg",
   "descripcion": "Sweater Liso Hombre, Pullover Escote O y V, Con Pitucones, Importado - Excelente calce y confección.",
   "precio": "19.000",
-  "categoria":"Masculino",
+  "categoria":"Masculinas",
   "stock": 5
 }
 ]

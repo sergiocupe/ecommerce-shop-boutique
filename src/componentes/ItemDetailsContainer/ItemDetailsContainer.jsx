@@ -3,15 +3,17 @@ import { pedirProductoPorId } from "../../helpers/pedirProductos"
 import ItemDetails from "../ItemDetails/ItemDetails"
 import { useState, useEffect } from "react"
 import {Container, Row, Spinner} from "react-bootstrap"
+import { useParams } from "react-router-dom"
 
 
-export default function ItemDetailsContainer({itemId}) {
+export default function ItemDetailsContainer() {
 
+  const itemId = useParams().itemId
   const [producto, setProducto] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    pedirProductoPorId(itemId)
+    pedirProductoPorId(Number(itemId))
       .then((res) => {
         setIsLoading(false)
         setProducto(res)

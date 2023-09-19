@@ -1,5 +1,6 @@
 import "./Item.css"
 import { Card, Button } from "react-bootstrap"
+import {Link} from "react-router-dom"
 
 export default function Item({ prod }) {
   return (
@@ -16,7 +17,7 @@ export default function Item({ prod }) {
           <span className="precio-custom">$ {prod.precio}</span>
         </Card.Text>
         <Card.Text variant="footer">
-          <Button variant="primary" href={`/item/${prod.id}`}>Ver Detalle</Button>
+          <Link className="botonVerDetalle-custom" to={`/producto/${prod.id}`}>Ver Detalle</Link>
         </Card.Text>
       </Card.Body>
     </Card>

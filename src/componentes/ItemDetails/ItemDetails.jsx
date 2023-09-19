@@ -6,7 +6,7 @@ export default function ItemDetails({ producto }) {
   return (
     <Row>
       <Col xs={4}>
-        <img src={`${process.env.PUBLIC_URL}/productos/${producto.imagen}`} />
+        <img src={`${process.env.PUBLIC_URL}/productos/${producto.imagen}`} className="imgDetalle-custom" />
       </Col>
       <Col>
         <p className="tituloDetalle-custom">{producto.titulo}</p>

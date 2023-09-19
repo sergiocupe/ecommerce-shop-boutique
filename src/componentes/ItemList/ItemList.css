@@ -6,3 +6,10 @@
   text-align: center;
   color:#205b74
 }
+
+.tituloCategoria-custom
+{
+  font-size: 1rem;
+  font-weight: bold;
+  padding-left: 10px;
+}

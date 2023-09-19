@@ -1,4 +1,5 @@
 import {Navbar, Container, Nav} from "react-bootstrap";
+import {Link} from "react-router-dom"
 import CartWidget from "../CartWidget/CartWidget";
 import "./Header.css";
 
@@ -13,18 +14,18 @@ export default function Header () {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className="links-custom">
-              <Nav.Link className="link-item-custom">
+              <Link className="link-item-custom" to="/" relative="path">
                   Inicio
-              </Nav.Link>
-              <Nav.Link>
+              </Link>
+              <Link className="link-item-custom" to="/Catalogo" relative="path">
                   Catálogo
-              </Nav.Link>
-              <Nav.Link>
+              </Link>
+              <Link className="link-item-custom" to="/Catalogo/Femeninas">
                   Prendas Femenina
-              </Nav.Link>
-              <Nav.Link>
+              </Link>
+              <Link className="link-item-custom" to="/Catalogo/Masculinas">
                   Prendas Masculina
-              </Nav.Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
           <CartWidget />
