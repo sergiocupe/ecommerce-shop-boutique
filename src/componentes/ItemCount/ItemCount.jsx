@@ -6,7 +6,7 @@ import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 import "./ItemCount.css"
 
-export default function ItemCount({ stock }) {
+export default function ItemCount({ stock, handleAgregarCarrito }) {
   const MySwal = withReactContent(Swal)
 
   const [cantidad, setCantidad] = useState(0)
@@ -50,7 +50,7 @@ export default function ItemCount({ stock }) {
         <Button variant="secondary" size="sm" onClick={incrementarCantidad}>
           +
         </Button>       
-        <Button variant="primary" size="sm" className="botonCarrito-custom">
+        <Button variant="primary" size="sm" className="botonCarrito-custom" onClick={handleAgregarCarrito(cantidad)}>
           <FontAwesomeIcon
             icon={faCartShopping}
             className="iconoCarrito-custom"
