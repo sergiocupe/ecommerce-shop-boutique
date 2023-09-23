@@ -1,33 +1,9 @@
-import { useState } from "react"
 import { Button, Form } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
-import Swal from "sweetalert2"
-import withReactContent from "sweetalert2-react-content"
 import "./ItemCount.css"
 
-export default function ItemCount({ stock, handleAgregarCarrito }) {
-  const MySwal = withReactContent(Swal)
-
-  const [cantidad, setCantidad] = useState(0)
-
-  const decrementarCantidad = () => {
-    cantidad > 0 && setCantidad(cantidad - 1)
-  }
-
-  const incrementarCantidad = () => {
-    cantidad < stock ? setCantidad(cantidad + 1) : mostrarMensaje()
-  }
-  
-  const mostrarMensaje = () => {
-    MySwal.fire({
-      position: 'center',
-      icon: 'info',
-      title: 'Le sentimos.\nNo hay más stock disponible para este producto!\n',
-      showConfirmButton: true,
-      timer: 2500
-    })
-  }
+export default function ItemCount({ cantidad, stock, handleDecrementarCantidad, handleIncrementarCantidad,  handleAgregarCarrito }) {
 
   return (
     <>
@@ -35,7 +11,7 @@ export default function ItemCount({ stock, handleAgregarCarrito }) {
         <Button
           variant="secondary"
           size="sm"
-          onClick={decrementarCantidad}
+          onClick={handleDecrementarCantidad}
           active={cantidad < 1 ? "true" : "false"}
         >
           -
@@ -47,10 +23,10 @@ export default function ItemCount({ stock, handleAgregarCarrito }) {
           value={cantidad}
           className="inputStock-custom"
         ></Form.Control>
-        <Button variant="secondary" size="sm" onClick={incrementarCantidad}>
+        <Button variant="secondary" size="sm" onClick={handleIncrementarCantidad}>
           +
         </Button>       
-        <Button variant="primary" size="sm" className="botonCarrito-custom" onClick={handleAgregarCarrito(cantidad)}>
+        <Button variant="primary" size="sm" className="botonCarrito-custom" onClick={handleAgregarCarrito}>
           <FontAwesomeIcon
             icon={faCartShopping}
             className="iconoCarrito-custom"
