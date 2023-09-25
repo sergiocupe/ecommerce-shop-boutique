@@ -1,0 +1,23 @@
+.contenidoHome-custom
+{
+  text-align: center;
+}
+
+.tituloHome-custom
+{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.subtituloHome-custom
+{
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.bannerHome-custom
+{
+  width: 70%;
+  height: auto;
+  padding-bottom: 20px;
+}

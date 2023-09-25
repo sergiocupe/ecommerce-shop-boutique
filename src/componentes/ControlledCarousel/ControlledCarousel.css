@@ -1,0 +1,13 @@
+.displayItem-custom
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.carousel {
+  width:70%;
+  height: 30rem;
+  margin: auto;
+}

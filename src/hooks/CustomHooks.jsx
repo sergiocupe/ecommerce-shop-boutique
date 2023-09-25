@@ -1,10 +1,7 @@
 import {useState} from "react"
-import Swal from "sweetalert2"
-import withReactContent from "sweetalert2-react-content"
+import { mostrarMensaje } from "../helpers/mensajeria"
 
-export const useContador = (valorInicial, stock) =>{
-  const MySwal = withReactContent(Swal)
-
+export const useContador = (valorInicial, stock, precio) =>{
   const [cantidad, setCantidad] = useState(valorInicial)
 
   const decrementarCantidad = () => {
@@ -12,18 +9,7 @@ export const useContador = (valorInicial, stock) =>{
   }
 
   const incrementarCantidad = () => {
-    cantidad < stock ? setCantidad(cantidad + 1) : mostrarMensaje()
+    cantidad < stock ? setCantidad(cantidad + 1) : mostrarMensaje("Le sentimos.\nNo hay más stock disponible para este producto!\n","info")
   }
-
-  const mostrarMensaje = () => {
-    MySwal.fire({
-      position: 'center',
-      icon: 'info',
-      title: 'Le sentimos.\nNo hay más stock disponible para este producto!\n',
-      showConfirmButton: true,
-      timer: 2500
-    })
-  }
-
   return {cantidad, incrementarCantidad, decrementarCantidad}
 }
