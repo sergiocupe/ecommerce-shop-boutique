@@ -3,7 +3,6 @@ import ItemCount from "../ItemCount/ItemCount"
 import { Row, Col } from "react-bootstrap"
 import { mostrarMensaje } from "../../helpers/mensajeria"
 import { useState, useEffect, useContext } from "react"
-//import { agregarProductoLocalStorage } from "../../helpers/localStorage"
 import { useContador } from "../../hooks/useContador"
 import { darFormatoNumero } from "../../helpers/formatoNumero"
 import  {CartContext}  from "../../context/CartContextProvider"
@@ -19,18 +18,10 @@ export default function ItemDetails({ producto }) {
 
   const handleAgregarCarrito = () => {
     if (cantidad > 0) {
-      //console.log({ ...producto, cantPedido: cantidad, totalCompra: total })
-      //Agrego el producto al carrito del LocalStorage
-      // agregarProductoLocalStorage({
-      //   ...producto,
-      //   cantPedido: cantidad,
-      //   totalCompra: total,
-      // })
-      agregarItem(producto,cantidad)
-      mostrarMensaje(
-        "Se agrego el producto correctamente al carrito\n",
-        "success"
-      )
+      if (agregarItem(producto,cantidad))
+        mostrarMensaje("Se agrego el producto correctamente al carrito\n","success")
+      else
+        mostrarMensaje("El producto ya existe en el carrito\n","error")
     } else {
       mostrarMensaje(
         "Debe ingresar una cantidad mayor que 0 para agregar al carrito\n",

@@ -8,8 +8,9 @@ export const CartContextProvider = ({ children }) => {
   const agregarItem = (item, cantidad) => {
     if (!existeEnCarrito(item.id)) {
       setCarrito((prev) => [...prev, { ...item, cantidad }]);
+      return true
     } else {
-      console.error("El producto ya fue agregado");
+      return false
     }
   }
 

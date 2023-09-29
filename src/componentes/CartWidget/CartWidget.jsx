@@ -1,10 +1,8 @@
 import "./CartWidget.css";
-import "../../helpers/localStorage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
-//import { inicializarProductosLocalStorage } from "../../helpers/localStorage";
 import { darFormatoNumero } from "../../helpers/formatoNumero";
 import { CartContext } from "../../context/CartContextProvider"
 import Button from "react-bootstrap/Button";
@@ -13,27 +11,10 @@ import Modal from "react-bootstrap/Modal";
 export default function CartWidget() {
   const {carrito, totalItemsCarrito, totalPrecioCarrito} = useContext(CartContext)
 
-  //const carrito = localStorage.getItem("carritoShop") ? JSON.parse(localStorage.getItem("carritoShop")) : [];
-
-  //const [totalCarrito, setTotalCarrito] = useState(0);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
-  console.log(carrito)
-
-  // const obtenerTotalCarrito = () => {
-  //   let total =0
-  //   carrito.map(item => total= total + item.totalCompra)
-  //   setTotalCarrito(total);
-  // }
-
-  // useEffect(() => {
-  //   inicializarProductosLocalStorage();
-  //   //obtenerTotalCarrito()
-  // }, []);
 
   return (
     <>
