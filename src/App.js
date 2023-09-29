@@ -1,22 +1,23 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './views/Home/Home';
-import Catalogo from './views/Catalogo/Catalogo';
-import Producto from './views/Producto/Producto';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./views/Home/Home";
+import Catalogo from "./views/Catalogo/Catalogo";
+import Producto from "./views/Producto/Producto";
+import {CartContextProvider} from "./context/CartContextProvider";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/shop-boutique" element={<Home/>}/>
-          <Route exact path="/catalogo" element={<Catalogo/>}/>
-          <Route exact path="/producto/:itemId" element={<Producto/>}/>
-          <Route exact path="/catalogo/:categoryDesc" element={<Catalogo/>}/>
-        </Routes>
+        <CartContextProvider>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/shop-boutique" element={<Home />} />
+            <Route path="/catalogo" element={<Catalogo />} />
+            <Route path="/producto/:itemId" element={<Producto />} />
+            <Route path="/catalogo/:categoryDesc" element={<Catalogo />}/>
+          </Routes>
+        </CartContextProvider>
       </BrowserRouter>
     </div>
   );
-}
-
-export default App;
+  }
