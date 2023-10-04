@@ -29,7 +29,7 @@ export const CartContextProvider = ({ children }) => {
 
   const totalPrecioCarrito = () => {
     return carrito.reduce(
-      (acc, prod) => (acc += prod.precio * prod.cantidad),
+      (acc, prod) => (acc += prod.price * 100 * prod.cantidad),
       0
     )
   }

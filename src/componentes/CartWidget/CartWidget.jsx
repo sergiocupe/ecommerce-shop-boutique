@@ -46,14 +46,14 @@ export default function CartWidget() {
               <div key={index} className="modalItem-custom">
                 <div>
                   <img
-                    src={`${process.env.PUBLIC_URL}/productos/${item.imagen}`}
+                    src={item.image}
                     className="imgProdModal-custom"
                   />
                 </div>
                 <div className="modalCantidad-custom">{item.cantidad}</div>
-                <div className="modalDescrip-custom">{item.descripcion}</div>
+                <div className="modalDescrip-custom">{item.title}</div>
                 <div className="modalPrecio-custom">
-                  {darFormatoNumero(item.precio)}
+                  {darFormatoNumero(item.price*100)}
                 </div>
                 <div>
                   <FontAwesomeIcon

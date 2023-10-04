@@ -20,10 +20,10 @@ export default function Header () {
               <NavLink className="link-item-custom" to="/Catalogo">
                   Catálogo
               </NavLink>
-              <NavLink className="link-item-custom" to="/Catalogo/Femeninas">
+              <NavLink className="link-item-custom" to="/Catalogo/women's clothing">
                   Prendas Femenina
               </NavLink>
-              <NavLink className="link-item-custom" to="/Catalogo/Masculinas">
+              <NavLink className="link-item-custom" to="/Catalogo/men's clothing">
                   Prendas Masculina
               </NavLink>
             </Nav>

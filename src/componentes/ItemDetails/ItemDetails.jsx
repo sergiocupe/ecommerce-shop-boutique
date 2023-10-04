@@ -9,11 +9,11 @@ import  {CartContext}  from "../../context/CartContextProvider"
 
 export default function ItemDetails({ producto }) {
   const {agregarItem} = useContext(CartContext)
-  const { cantidad, incrementarCantidad, decrementarCantidad } = useContador(0,producto.stock)
+  const { cantidad, incrementarCantidad, decrementarCantidad } = useContador(0,producto.rating.count)
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
-    setTotal(cantidad * producto.precio)
+    setTotal(cantidad * producto.price*100)
   }, [cantidad])
 
   const handleAgregarCarrito = () => {
@@ -34,19 +34,19 @@ export default function ItemDetails({ producto }) {
     <Row>
       <Col xs={4}>
         <img
-          src={`${process.env.PUBLIC_URL}/productos/${producto.imagen}`}
+          src={producto.image}
           className="imgDetalle-custom"
         />
       </Col>
       <Col>
-        <p className="tituloDetalle-custom">{producto.titulo}</p>
-        <p className="tituloDescripcio-custom">{producto.descripcion}</p>
-        <p className="categoriaDetalle-custom">{producto.categoria}</p>
-        <p className="precioDetalle-custom">{darFormatoNumero(producto.precio)}</p>
+        <p className="tituloDetalle-custom">{producto.title}</p>
+        <p className="tituloDescripcio-custom">{producto.description}</p>
+        <p className="categoriaDetalle-custom">{(producto.category.toUpperCase() === "WOMEN'S CLOTHING"? "PRENDAS FEMENINAS" : "PRENDAS MASCULINAS")}</p>
+        <p className="precioDetalle-custom">{darFormatoNumero(producto.price*100)}</p>
         <p className="precioTotal-custom">Total: {darFormatoNumero(total)}</p>
         <ItemCount
           cantidad={cantidad}
-          stock={producto.stock}
+          stock={producto.rating.count}
           handleDecrementarCantidad={decrementarCantidad}
           handleIncrementarCantidad={incrementarCantidad}
           handleAgregarCarrito={handleAgregarCarrito}
