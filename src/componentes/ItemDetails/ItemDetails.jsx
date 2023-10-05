@@ -9,7 +9,7 @@ import  {CartContext}  from "../../context/CartContextProvider"
 
 export default function ItemDetails({ producto }) {
   const {agregarItem} = useContext(CartContext)
-  const { cantidad, incrementarCantidad, decrementarCantidad } = useContador(0,producto.rating.count)
+  const {cantidad, incrementarCantidad, decrementarCantidad} = useContador(0,producto.rating.count)
   const [total, setTotal] = useState(0)
 
   useEffect(() => {

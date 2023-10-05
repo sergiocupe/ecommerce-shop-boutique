@@ -4,12 +4,12 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import { darFormatoNumero } from "../../helpers/formatoNumero";
-import { CartContext } from "../../context/CartContextProvider"
+import { CartContext } from "../../context/CartContextProvider";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function CartWidget() {
-  const {carrito, totalItemsCarrito, totalPrecioCarrito} = useContext(CartContext)
+  const { carrito, totalItemsCarrito, totalPrecioCarrito, eliminarItem } = useContext(CartContext);
 
   const [show, setShow] = useState(false);
 
@@ -45,25 +45,27 @@ export default function CartWidget() {
             {carrito.map((item, index) => (
               <div key={index} className="modalItem-custom">
                 <div>
-                  <img
-                    src={item.image}
-                    className="imgProdModal-custom"
-                  />
+                  <img src={item.image} className="imgProdModal-custom" />
                 </div>
                 <div className="modalCantidad-custom">{item.cantidad}</div>
                 <div className="modalDescrip-custom">{item.title}</div>
                 <div className="modalPrecio-custom">
-                  {darFormatoNumero(item.price*100)}
+                  {darFormatoNumero(item.price * 100)}
                 </div>
                 <div>
-                  <FontAwesomeIcon
-                    icon={faTrash}
+                  <Button
+                    variant="light"
                     size="sm"
-                    style={{ color: "#4f88a1", cursor: "pointer" }}
-                  />
+                    onClick={() => eliminarItem(item.id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      size="sm"
+                      style={{ color: "#4f88a1", cursor: "pointer" }}
+                    />
+                  </Button>
                 </div>
               </div>
-              
             ))}
           </div>
           <div className="modalTotal-custom">

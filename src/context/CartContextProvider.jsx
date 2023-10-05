@@ -23,7 +23,7 @@ export const CartContextProvider = ({ children }) => {
   }
 
   const eliminarItem = (itemId) => {
-    const carritoActualizado = carrito.filter((prod) => prod.id !== itemId);
+    let carritoActualizado = carrito.filter((prod) => prod.id !== itemId);
     setCarrito(carritoActualizado);
   }
 
