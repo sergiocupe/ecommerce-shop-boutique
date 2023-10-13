@@ -15,7 +15,7 @@ export default function Item({ prod }) {
       />
       <Card.Body>
         <Card.Title className="titulo-custom">{prod.title}</Card.Title>
-        <Card.Text className="descripcion-custom">{prod.description.substring(0, 120)}...</Card.Text>
+        <Card.Text className="descripcion-custom">{prod.description && prod.description.substring(0, 120)}...</Card.Text>
         <Card.Text>
           <span className="precio-custom">{numberFormat2.format(prod.price*100)}</span>
         </Card.Text>

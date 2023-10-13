@@ -9,7 +9,7 @@ import  {CartContext}  from "../../context/CartContextProvider"
 
 export default function ItemDetails({ producto }) {
   const {agregarItem} = useContext(CartContext)
-  const {cantidad, incrementarCantidad, decrementarCantidad} = useContador(0,producto.rating.count)
+  const {cantidad, incrementarCantidad, decrementarCantidad} = useContador(0,producto.count)
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function ItemDetails({ producto }) {
         <p className="precioTotal-custom">Total: {darFormatoNumero(total)}</p>
         <ItemCount
           cantidad={cantidad}
-          stock={producto.rating.count}
+          stock={producto.count}
           handleDecrementarCantidad={decrementarCantidad}
           handleIncrementarCantidad={incrementarCantidad}
           handleAgregarCarrito={handleAgregarCarrito}

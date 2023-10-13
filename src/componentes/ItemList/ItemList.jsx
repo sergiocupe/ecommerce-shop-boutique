@@ -1,11 +1,14 @@
 import "./ItemList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShirt } from "@fortawesome/free-solid-svg-icons";
-import { pedirProductos } from "../../helpers/pedirProductos";
 import Item from "../Item/Item";
 import { Row, Col, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {
+  pedirProductos_FIREBASE,
+  pedirProductosPorCategoria_FIREBASE,
+} from "../../helpers/pedirProductos";
 
 export default function ItemList() {
   const categoryDesc = useParams().categoryDesc;
@@ -15,20 +18,31 @@ export default function ItemList() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTitulo(categoryDesc ? "Prendas " + (categoryDesc === "women's clothing"? "Femeninas" : "Masculinas") : "");
+    setTitulo(
+      categoryDesc
+        ? (categoryDesc === "women's clothing" ? "Prendas Femeninas" : categoryDesc === "men's clothing" ? "Prendas Masculinas" : "Electrónica")
+        : ""
+    );
     setIsLoading(true);
-    pedirProductos()
-      .then((res) => {
-        setIsLoading(false);
-        if (categoryDesc)
-          setItemsProductos(
-            res.filter((prod) => prod.category === categoryDesc)
-          );
-        else setItemsProductos(res);
-      })
-      .catch((err) => {
-        setItemsProductos([]);
-      });
+    if (categoryDesc) {
+      pedirProductosPorCategoria_FIREBASE(categoryDesc)
+        .then((res) => {
+          setIsLoading(false);
+          setItemsProductos(res)
+        })
+        .catch((err) => {
+          setItemsProductos([]);
+        });
+    } else {
+      pedirProductos_FIREBASE()
+        .then((res) => {
+          setIsLoading(false);
+          setItemsProductos(res)
+        })
+        .catch((err) => {
+          setItemsProductos([]);
+        });
+    }
   }, [categoryDesc]);
 
   return (

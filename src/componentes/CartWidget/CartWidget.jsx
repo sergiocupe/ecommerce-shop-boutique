@@ -42,31 +42,35 @@ export default function CartWidget() {
         </Modal.Header>
         <Modal.Body>
           <div className="modalItems-custom">
-            {carrito.map((item, index) => (
-              <div key={index} className="modalItem-custom">
-                <div>
-                  <img src={item.image} className="imgProdModal-custom" />
-                </div>
-                <div className="modalCantidad-custom">{item.cantidad}</div>
-                <div className="modalDescrip-custom">{item.title}</div>
-                <div className="modalPrecio-custom">
-                  {darFormatoNumero(item.price * 100)}
-                </div>
-                <div>
-                  <Button
-                    variant="light"
-                    size="sm"
-                    onClick={() => eliminarItem(item.id)}
-                  >
-                    <FontAwesomeIcon
-                      icon={faTrash}
+            {totalItemsCarrito()===0 ? 
+              <div>No hay items en el carrito</div>
+             : 
+              carrito.map((item, index) => (
+                <div key={index} className="modalItem-custom">
+                  <div>
+                    <img src={item.image} className="imgProdModal-custom" />
+                  </div>
+                  <div className="modalCantidad-custom">{item.cantidad}</div>
+                  <div className="modalDescrip-custom">{item.title}</div>
+                  <div className="modalPrecio-custom">
+                    {darFormatoNumero(item.price * 100)}
+                  </div>
+                  <div>
+                    <Button
+                      variant="light"
                       size="sm"
-                      style={{ color: "#4f88a1", cursor: "pointer" }}
-                    />
-                  </Button>
+                      onClick={() => eliminarItem(item.id)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        size="sm"
+                        style={{ color: "#4f88a1", cursor: "pointer" }}
+                      />
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
           <div className="modalTotal-custom">
             Total: {darFormatoNumero(totalPrecioCarrito())}
