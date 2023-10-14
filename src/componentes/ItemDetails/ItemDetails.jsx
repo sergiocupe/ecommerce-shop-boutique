@@ -14,7 +14,7 @@ export default function ItemDetails({ producto }) {
 
   useEffect(() => {
     setTotal(cantidad * producto.price*100)
-  }, [cantidad])
+  }, [cantidad, producto.price])
 
   const handleAgregarCarrito = () => {
     if (cantidad > 0) {
@@ -33,10 +33,7 @@ export default function ItemDetails({ producto }) {
   return (
     <Row>
       <Col xs={4}>
-        <img
-          src={producto.image}
-          className="imgDetalle-custom"
-        />
+        <img alt={producto.title} src={producto.image} className="imgDetalle-custom" />
       </Col>
       <Col>
         <p className="tituloDetalle-custom">{producto.title}</p>

@@ -15,8 +15,7 @@ export default function Home() {
         <ControlledCarousel/>
         </Col>
         <Col xs={12}>
-          <img className="bannerHome-custom"
-            src={`${process.env.PUBLIC_URL}/images/banner_giftcard.png`}
+          <img className="bannerHome-custom" alt="banner" src={`${process.env.PUBLIC_URL}/images/banner_giftcard.png`}
           ></img>
         </Col>
       </Row>

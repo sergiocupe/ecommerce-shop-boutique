@@ -23,6 +23,12 @@
   border: 0.5px solid #4f88a1;
 }
 
+.modalDatos-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
 .modalItem-custom {
   display: flex;
   flex-direction: row;
@@ -61,4 +67,43 @@
 .imgTrashodal-custom {
   width: 30px;
   height: 30px;
+}
+
+.column {
+  float: left;
+  width: 60%;
+}
+
+.column1 {
+  float: left;
+  width: 25%;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  padding: 20px;
+}
+
+.campoNoValido-custom
+{
+  font-size: 0.8rem;
+  color: red;
+  padding-left: 8rem;
+}
+
+.buttons-custom
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-custom
+{
+  margin-right: 1rem;
 }

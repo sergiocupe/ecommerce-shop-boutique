@@ -1,6 +1,5 @@
 import { db } from "../firebase/config";
-import { collection, addDoc, getDocs, getDoc, doc, query, where } from "firebase/firestore";
-import productos from "../data/productos.json"
+import { collection, getDocs, getDoc, doc, query, where } from "firebase/firestore";
 
 export const pedirProductos_API = () => {
   return new Promise((resolve, reject) => {

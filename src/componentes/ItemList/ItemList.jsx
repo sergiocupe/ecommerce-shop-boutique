@@ -5,10 +5,7 @@ import Item from "../Item/Item";
 import { Row, Col, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  pedirProductos_FIREBASE,
-  pedirProductosPorCategoria_FIREBASE,
-} from "../../helpers/pedirProductos";
+import { pedirProductos_FIREBASE, pedirProductosPorCategoria_FIREBASE} from "../../helpers/pedirProductos";
 
 export default function ItemList() {
   const categoryDesc = useParams().categoryDesc;
