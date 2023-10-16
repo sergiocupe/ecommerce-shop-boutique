@@ -11,74 +11,40 @@ import { db } from "../../firebase/config"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import Form from "react-bootstrap/Form"
+import {useForm} from "react-hook-form"
 
 export default function CartWidget() {
-  const pedidosRef = collection(db,"orders")
+  const {register, handleSubmit, watch, reset, formState:{errors}} = useForm({defaultValues:{nombre:"",apellido:"",email:"",emailConfirm:""}})
+
+  const pedidosRef = collection(db,"orders") 
 
   const { carrito, totalItemsCarrito, totalPrecioCarrito, eliminarItem, vaciarCarrito } = useContext(CartContext)
 
   const [show, setShow] = useState(false)
-  const [nombre, setNombre] = useState("")
-  const [apellido, setApellido] = useState("")
-  const [email, setEmail] = useState("")
-  const [emailConfirm, setEmailConfirm] = useState("")
-  const [nombreObligatorio, setNombreObligatorio] = useState(false)
-  const [apellidoObligatorio, setApellidoObligatorio] = useState(false)
-  const [mensajeEmail, setMensajeEmail] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (nombre.length === 0) 
-      setNombreObligatorio(true)
-    else 
-      setNombreObligatorio(false)
-
-    if (apellido.length === 0) 
-      setApellidoObligatorio(true)
-    else 
-      setApellidoObligatorio(false)
-
-    if (email !== emailConfirm || email.length === 0 || emailConfirm.length === 0) {
-      setMensajeEmail(true)
-    } else {
-      setMensajeEmail(false)
-    }
-
+   
+  const enviarForm=(data) => {
+   
     if (totalItemsCarrito()===0)
-      mostrarMensaje("El carrito se encuentra vacío, debe seleccionar algún item para la compra.\n","error")
+      mostrarMensaje("¡Hay un carrito que llenar!\nActualmente no tenés productos en tu carrito.\n","error")
 
-    if (nombre.length > 0 && apellido.length > 0 && email === emailConfirm && totalItemsCarrito()>0)
+    if (data.nombre.length > 0 && data.apellido.length > 0 && data.email === data.emailConfirm && totalItemsCarrito()>0)
     {
-      vaciarCarrito()
-      setApellido("")
-      setNombre("")
-      setEmail("")
-      setEmailConfirm("")
-
-      const pedido ={
-        cliente:{nombre:nombre, apellido:apellido,email:email},
+       const pedido ={
+        cliente:{data},
         productos: carrito,
         total: totalPrecioCarrito(),
         fecha: new Date()
-      }
+        }
 
       addDoc(pedidosRef,pedido)
+      vaciarCarrito()
+      reset()
 
       mostrarMensaje("Gracias por su compra\nNos contactaremos con usted a la brevedad.","success")
-    }
-
-  }
-
-  const handleEmailConfirm=(e) => {
-      setEmailConfirm(e.target.value)
-      if (e.target.value !== email) 
-        setMensajeEmail(true)
-      else
-        setMensajeEmail(false)
+    }   
   }
 
   return (
@@ -105,80 +71,87 @@ export default function CartWidget() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit(enviarForm)}>
             <div className="modalDatos-custom">
               <div className="row">
                 <div className="column1">Nombre:</div>
                 <div className="column">
                   <Form.Control
                     size="sm"
-                    id="nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
+                    {...register("nombre",{
+                      required:{value:true, message: "* El nombre es obligatorio"},
+                      minLength:{value:2, message: "* El nombre debe contener al menos 3 caracteres"},
+                      maxLength:{value:20, message: "* El nombre no puede contener mas de 20 caracteres"}
+                    }
+                    )}
                   />
                 </div>
               </div>
-              {nombreObligatorio && (
-                <Form.Label className="campoNoValido-custom">
-                  * Campo Obligatorio
-                </Form.Label>
-              )}
+              {errors.nombre && <Form.Label className="campoNoValido-custom">{errors.nombre.message}</Form.Label>}
               <div className="row">
                 <div className="column1">Apellido:</div>
                 <div className="column">
                   <Form.Control
                     size="sm"
-                    id="apellido"
-                    value={apellido}
-                    onChange={(e) => setApellido(e.target.value)}
+                    {...register("apellido",{
+                      required:{value:true, message: "* El apellido es obligatorio"},
+                      minLength:{value:2, message: "* El apellido debe contener al menos 3 caracteres"},
+                      maxLength:{value:20, message: "* El apellido no puede contener mas de 20 caracteres"}
+                    }
+                    )}
                   />
                 </div>
               </div>
-              {apellidoObligatorio && (
-                <Form.Label className="campoNoValido-custom">
-                  * Campo Obligatorio
-                </Form.Label>
-              )}
+              {errors.apellido && <Form.Label className="campoNoValido-custom">{errors.apellido.message}</Form.Label>}
               <div className="row">
                 <div className="column1">Email:</div>
                 <div className="column">
                   <Form.Control
                     type="email"
                     placeholder="name@example.com"
-                    id="email"
                     size="sm"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    {...register("email",{
+                      required:{
+                        value:true, 
+                        message: "* El email es obligatorio"
+                      },
+                      pattern:{
+                        value:/.+@.+\.[A-Za-z]+$/,
+                        message:"Formato inválido"
+                      }
+                    }
+                    )}
                   />
                 </div>
               </div>{" "}
-              {mensajeEmail && (
-                <Form.Label className="campoNoValido-custom">
-                  * Campo obligatorio y ambos emails deben coincidir
-                </Form.Label>
-              )}
+              {errors.email && <Form.Label className="campoNoValido-custom">{errors.email.message}</Form.Label>}
               <div className="row">
                 <div className="column1">Confirma Email:</div>
                 <div className="column">
                   <Form.Control
                     type="email"
                     placeholder="name@example.com"
-                    id="emailConfirm"
                     size="sm"
-                    value={emailConfirm}
-                    onChange={handleEmailConfirm}
+                    {...register("emailConfirm",{
+                      required:{
+                        value:true, 
+                        message: "* El email es obligatorio"
+                      },
+                      pattern:{
+                        value:/.+@.+\.[A-Za-z]+$/,
+                        message:"Formato inválido"
+                      },
+                      validate: value => value === watch("email") || "El email debe coincidir con el anterior"
+                      }
+                    )}
                   />
                 </div>
               </div>
-              {mensajeEmail && (
-                <Form.Label className="campoNoValido-custom">
-                  * Campo obligatorio y ambos emails deben coincidir
-                </Form.Label>
-              )}
+              {errors.emailConfirm && <Form.Label className="campoNoValido-custom">{errors.emailConfirm.message}</Form.Label>}
             </div>
             <div className="modalItems-custom">
               {totalItemsCarrito() === 0 ? (
-                <div>No hay items en el carrito</div>
+                <div className="carritoVacio-custom">¡Hay un carrito que llenar!<br/>Actualmente no tenés productos en tu carrito.</div>
               ) : (
                 carrito.map((item, index) => (
                   <div key={index} className="modalItem-custom">

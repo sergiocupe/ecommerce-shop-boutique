@@ -9,6 +9,14 @@
   color: #4f88a1;
 }
 
+.carritoVacio-custom
+{
+  text-align: center;
+  font-weight: bold;
+  color: #4f88a1;
+  font-size: 0.9rem;
+}
+
 .modalTitulo-custom {
   font-size: 1.4rem;
   font-weight: bold;
