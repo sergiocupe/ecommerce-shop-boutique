@@ -2,7 +2,7 @@ import "./CartWidget.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { darFormatoNumero } from "../../helpers/formatoNumero"
 import { CartContext } from "../../context/CartContextProvider"
 import { mostrarMensaje } from "../../helpers/mensajeria"
@@ -19,14 +19,13 @@ export default function CartWidget() {
   const pedidosRef = collection(db,"orders") 
 
   const { carrito, totalItemsCarrito, totalPrecioCarrito, eliminarItem, vaciarCarrito } = useContext(CartContext)
-
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
    
   const enviarForm=(data) => {
-   
+    
     if (totalItemsCarrito()===0)
       mostrarMensaje("¡Hay un carrito que llenar!\nActualmente no tenés productos en tu carrito.\n","error")
 
@@ -46,6 +45,11 @@ export default function CartWidget() {
       mostrarMensaje("Gracias por su compra\nNos contactaremos con usted a la brevedad.","success")
     }   
   }
+
+  //Manejo del localstorage cada vez que cambia el carrito, se actualiza el localstorage
+  useEffect(() =>{
+    localStorage.setItem("carrito",JSON.stringify(carrito))
+  },[carrito])
 
   return (
     <>

@@ -3,7 +3,12 @@ import { createContext, useState } from "react"
 export const CartContext = createContext({carrito:[]})
 
 export const CartContextProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState([])
+
+  if (!localStorage.getItem("carrito"))
+    localStorage.setItem("carrito", [])
+
+  //Inicializa el localstorage con el array de items que tiene sino lo inicializa con []
+  const [carrito, setCarrito] = useState(localStorage.getItem("carrito").length>0 ? JSON.parse(localStorage.getItem("carrito")):[])
 
   const agregarItem = (item, cantidad) => {
     if (!existeEnCarrito(item.id)) {
@@ -19,6 +24,7 @@ export const CartContextProvider = ({ children }) => {
   }
 
   const vaciarCarrito = () => {
+    localStorage.setItem("carrito", [])
     setCarrito([]);
   }
 

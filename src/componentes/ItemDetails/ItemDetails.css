@@ -31,3 +31,14 @@
   height: 200px;
 }
 
+.prodNoExiste-custom
+{
+  text-align: center;
+  font-weight: bold;
+  color: #4f88a1;
+  font-size: 1.2rem;
+}
+.imgProdNoExiste-custom
+{
+  width: 150px;
+}

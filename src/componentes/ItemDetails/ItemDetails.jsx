@@ -19,7 +19,9 @@ export default function ItemDetails({ producto }) {
   const handleAgregarCarrito = () => {
     if (cantidad > 0) {
       if (agregarItem(producto,cantidad))
+      {
         mostrarMensaje("Se agrego el producto correctamente al carrito\n","success")
+      }
       else
         mostrarMensaje("El producto ya existe en el carrito\n","error")
     } else {
@@ -31,7 +33,9 @@ export default function ItemDetails({ producto }) {
   }
 
   return (
-    <Row>
+    <>
+    {(producto.title!=null)?    
+      <Row>
       <Col xs={4}>
         <img alt={producto.title} src={producto.image} className="imgDetalle-custom" />
       </Col>
@@ -50,5 +54,13 @@ export default function ItemDetails({ producto }) {
         />
       </Col>
     </Row>
+    :
+    <div className="prodNoExiste-custom">
+      <img  src={process.env.PUBLIC_URL + "/images/logo.png"} alt="Producto No existente"  className="imgProdNoExiste-custom" />
+      <br/>
+      Producto no existente!<br/>Por favor seleccione un producto del catalogo.
+      </div>
+  }
+    </>
   )
 }

@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header>
       <Navbar className="navbar navbar-expand-sm navbar-custom" expand="lg">
-        <Container className="container-fluid">
+        <Container fluid>
           <Navbar.Brand>
             <NavLink className="link-item-custom" to="/" relative="path">
               <img
