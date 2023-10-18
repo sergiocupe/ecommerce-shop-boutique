@@ -1,7 +1,6 @@
 import "./CartWidget.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
-import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useState, useContext, useEffect } from "react"
 import { darFormatoNumero } from "../../helpers/formatoNumero"
 import { CartContext } from "../../context/CartContextProvider"
@@ -14,22 +13,20 @@ import Form from "react-bootstrap/Form"
 import {useForm} from "react-hook-form"
 
 export default function CartWidget() {
-  const {register, handleSubmit, watch, reset, formState:{errors}} = useForm({defaultValues:{nombre:"",apellido:"",email:"",emailConfirm:""}})
-
   const pedidosRef = collection(db,"orders") 
 
+  const {register, handleSubmit, watch, reset, formState:{errors}} = useForm({defaultValues:{nombre:"",telefono:"",email:"",emailConfirm:""}})
   const { carrito, totalItemsCarrito, totalPrecioCarrito, eliminarItem, vaciarCarrito } = useContext(CartContext)
   const [show, setShow] = useState(false)
-
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
    
   const enviarForm=(data) => {
     
     if (totalItemsCarrito()===0)
-      mostrarMensaje("¡Hay un carrito que llenar!\nActualmente no tenés productos en tu carrito.\n","error")
+      mostrarMensaje("¡Hay un carrito que llenar!\nActualmente no tenés productos en tu carrito.\n","error",5000)
 
-    if (data.nombre.length > 0 && data.apellido.length > 0 && data.email === data.emailConfirm && totalItemsCarrito()>0)
+    if (totalItemsCarrito()>0)
     {
        const pedido ={
         cliente:{data},
@@ -38,11 +35,15 @@ export default function CartWidget() {
         fecha: new Date()
         }
 
-      addDoc(pedidosRef,pedido)
-      vaciarCarrito()
-      reset()
-
-      mostrarMensaje("Gracias por su compra\nNos contactaremos con usted a la brevedad.","success")
+      const res = addDoc(pedidosRef,pedido)
+      res.then((data) => {
+        vaciarCarrito()
+        reset()
+        mostrarMensaje("Gracias por su compra.\nSu numero de orden es el \n" + data.id,"success",5000)
+      })
+      .catch((err) => {
+        mostrarMensaje("Hubo un error al enviar el carrito." + err ,"error",5000)
+      })
     }   
   }
 
@@ -93,20 +94,25 @@ export default function CartWidget() {
               </div>
               {errors.nombre && <Form.Label className="campoNoValido-custom">{errors.nombre.message}</Form.Label>}
               <div className="row">
-                <div className="column1">Apellido:</div>
+                <div className="column1">Teléfono:</div>
                 <div className="column">
                   <Form.Control
+                    type="phone"
                     size="sm"
-                    {...register("apellido",{
-                      required:{value:true, message: "* El apellido es obligatorio"},
-                      minLength:{value:2, message: "* El apellido debe contener al menos 3 caracteres"},
-                      maxLength:{value:20, message: "* El apellido no puede contener mas de 20 caracteres"}
+                    {...register("telefono",{
+                      required:{value:true, message: "* El teléfono es obligatorio"},
+                      minLength:{value:2, message: "* El teléfono debe contener al menos 3 caracteres"},
+                      maxLength:{value:20, message: "* El teléfono no puede contener mas de 20 caracteres"},
+                      pattern:{
+                        value:/^[0-9\b]+$/,
+                        message:"Formato inválido"
+                      }
                     }
                     )}
                   />
                 </div>
               </div>
-              {errors.apellido && <Form.Label className="campoNoValido-custom">{errors.apellido.message}</Form.Label>}
+              {errors.telefono && <Form.Label className="campoNoValido-custom">{errors.telefono.message}</Form.Label>}
               <div className="row">
                 <div className="column1">Email:</div>
                 <div className="column">

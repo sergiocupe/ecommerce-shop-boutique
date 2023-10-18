@@ -3,12 +3,12 @@ import withReactContent from "sweetalert2-react-content"
 
 const MySwal = withReactContent(Swal)
 
-export const mostrarMensaje = (mensaje, icono) => {
+export const mostrarMensaje = (mensaje, icono, timer) => {
   MySwal.fire({
-    position: 'center',
+    position: "center",
     icon: icono,
     title: mensaje,
     showConfirmButton: true,
-    timer: 2500
+    timer:timer
   })
 }

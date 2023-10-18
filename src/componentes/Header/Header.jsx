@@ -2,6 +2,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
 import "./Header.css";
+import SearchOrder from "../SearchOrder/SearchOrder";
 
 export default function Header() {
   return (
@@ -44,6 +45,7 @@ export default function Header() {
             </Nav>
           </Navbar.Collapse>
           <CartWidget />
+          <SearchOrder />
         </Container>
       </Navbar>
     </header>

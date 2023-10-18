@@ -20,14 +20,14 @@ export default function ItemDetails({ producto }) {
     if (cantidad > 0) {
       if (agregarItem(producto,cantidad))
       {
-        mostrarMensaje("Se agrego el producto correctamente al carrito\n","success")
+        mostrarMensaje("Se agrego el producto correctamente al carrito\n","success",1500)
       }
       else
-        mostrarMensaje("El producto ya existe en el carrito\n","error")
+        mostrarMensaje("El producto ya existe en el carrito\n","error",1500)
     } else {
       mostrarMensaje(
         "Debe ingresar una cantidad mayor que 0 para agregar al carrito\n",
-        "info"
+        "info",1500
       )
     }
   }

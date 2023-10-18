@@ -13,7 +13,7 @@ export const useContador = (valorInicial, stock) => {
       ? setCantidad(cantidad + 1)
       : mostrarMensaje(
           "Le sentimos.\nNo hay más stock disponible para este producto!\n",
-          "info"
+          "info",1500
         );
   };
   return { cantidad, incrementarCantidad, decrementarCantidad };
