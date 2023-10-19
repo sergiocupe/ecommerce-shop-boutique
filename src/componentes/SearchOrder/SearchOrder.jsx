@@ -12,13 +12,6 @@ import { darFormatoNumero } from "../../helpers/formatoNumero"
 
 export default function SearchOrder() {
 
-  const initialState = {
-    nombre: "",
-    telefono: "",
-    email: ""
-  };
-
-  const [{nombre,telefono,email}, setState] = useState(initialState)
   const [carrito, setCarrito] = useState([])
   const [totalCarrito, setTotalCarrito] = useState(0)
 
@@ -28,7 +21,6 @@ export default function SearchOrder() {
 
   const handleClose = () => {
     reset()
-    setState(initialState)
     setCarrito([])
     setTotalCarrito(0)
     setShow(false)    
@@ -38,12 +30,16 @@ export default function SearchOrder() {
   const enviarForm = (data) => {
     pedirOrden_FIREBASE(data.nroOrden)
     .then((data) => {
-      setState(data.cliente.data)
-      setCarrito(data.productos)
-      setTotalCarrito(data.total)
+      if (data.productos.length>0)
+      {
+        setCarrito(data.productos)
+        setTotalCarrito(data.total)
+      }
+      else
+        mostrarMensaje("Nro de Orden no existente.\n Intente nuevamente","error",5000)
       })
     .catch(err=>
-      mostrarMensaje("Nro de Orden no existente.\n Intente nuevamente","error",5000)
+      mostrarMensaje("Error al obtener la orden " + err,"error",5000)
       )
     } 
 
@@ -107,23 +103,8 @@ export default function SearchOrder() {
             </Button>
             <hr className="linea-custom"></hr>
           </Form>
-
-          <div className="modalDatos-custom">
-            <div className="row-custom">
-              <div className="label-custom">Nombre:</div>
-              <div className="label-weight-custom">{nombre}</div>
-            </div>
-            <div className="row-custom">
-              <div className="label-custom">Teléfono:</div>
-              <div className="label-weight-custom">{telefono}</div>
-            </div>
-            <div className="row-custom">
-              <div className="label-custom">Email:</div>
-              <div className="label-weight-custom">{email}</div>
-            </div>
-          </div>
           <div className="modalItems-custom">
-          {
+          {carrito&&
            carrito.map((item, index) => (
                   <div key={index} className="modalItem-custom">
                     <div>
