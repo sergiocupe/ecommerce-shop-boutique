@@ -4,7 +4,7 @@
 
 <center>
  <a href="https://github.com/sergiocupe/shop-boutique">
-    <img src="https://sergiocupe.github.io/shop-boutique/images/logo.png" width="184" height="100" alt="logo">
+    <img src="https://sergiocupe.github.io/shop-boutique/images/logo.png" width="184" height="100" alt="logoProyecto">
   </a>
 
 ## E-commerce para el curso de React en CoderHouse
