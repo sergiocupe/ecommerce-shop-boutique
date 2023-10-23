@@ -4,7 +4,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color:#205b74
+  color:#205b74;
+  flex-wrap: wrap;
+  position: relative;
+
 }
 
 .tituloCategoria-custom

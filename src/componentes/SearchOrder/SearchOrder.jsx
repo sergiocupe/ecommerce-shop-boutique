@@ -6,42 +6,26 @@ import { useForm } from "react-hook-form"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import Form from "react-bootstrap/Form"
-import { pedirOrden_FIREBASE } from "../../helpers/pedirOrden"
-import { mostrarMensaje } from "../../helpers/mensajeria"
+import { Spinner } from "react-bootstrap";
 import { darFormatoNumero } from "../../helpers/formatoNumero"
+import { useOrden } from "../../hooks/useOrden"
 
 export default function SearchOrder() {
-
-  const [carrito, setCarrito] = useState([])
-  const [totalCarrito, setTotalCarrito] = useState(0)
-
+  const {obtenerDetalleOrden, carritoDetalle, setCarritoDetalle, isLoading, totalCarrito, setTotalCarrito}=useOrden()
   const {register,handleSubmit,reset, formState: { errors }} = useForm({ defaultValues: { nroOrden: "" } })
-
   const [show, setShow] = useState(false)
 
   const handleClose = () => {
     reset()
-    setCarrito([])
+    setCarritoDetalle([])
     setTotalCarrito(0)
     setShow(false)    
   }
   const handleShow = () => setShow(true)
 
   const enviarForm = (data) => {
-    pedirOrden_FIREBASE(data.nroOrden)
-    .then((data) => {
-      if (data.productos.length>0)
-      {
-        setCarrito(data.productos)
-        setTotalCarrito(data.total)
-      }
-      else
-        mostrarMensaje("Nro de Orden no existente.\n Intente nuevamente","error",5000)
-      })
-    .catch(err=>
-      mostrarMensaje("Error al obtener la orden " + err,"error",5000)
-      )
-    } 
+    obtenerDetalleOrden(data.nroOrden)
+  } 
 
   return (
     <>
@@ -104,8 +88,10 @@ export default function SearchOrder() {
             <hr className="linea-custom"></hr>
           </Form>
           <div className="modalItems-custom">
-          {carrito&&
-           carrito.map((item, index) => (
+          {isLoading ? (
+          <Spinner animation="border" />
+            ) : 
+           carritoDetalle.map((item, index) => (
                   <div key={index} className="modalItem-custom">
                     <div>
                       <img src={item.image} className="imgProdModal-custom" alt={item.title} />
