@@ -10,8 +10,8 @@
 ## E-commerce para el curso de React en CoderHouse
 ### Video de navegación en la aplicación (click para ver)
 
-  <a href="http://www.youtube.com/watch?v=YfTgt29KcwE">
-    <img src="http://img.youtube.com/vi/YfTgt29KcwE/0.jpg" alt="habemuspapayoutube" >
+  <a href="https://www.youtube.com/watch?v=BTGaWgtbBEg">
+    <img src="http://img.youtube.com/vi/BTGaWgtbBEg/0.jpg" alt="SHOP-BOUTIQUE" >
   </a>
 </center>
 
