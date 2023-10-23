@@ -1,6 +1,6 @@
 import "./CartWidget.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faCartShopping, faTrash, faBroom } from "@fortawesome/free-solid-svg-icons"
 import { useState, useContext, useEffect } from "react"
 import { darFormatoNumero } from "../../helpers/formatoNumero"
 import { CartContext } from "../../context/CartContextProvider"
@@ -191,7 +191,25 @@ export default function CartWidget() {
               )}
             </div>
             <div className="modalTotal-custom">
+              <div>
+              {carrito.length>0 &&
+              <Button
+                        variant="light"
+                        size="sm"
+                        onClick={() => vaciarCarrito()}
+                        title="Vaciar Carrito"
+                      >
+                        <FontAwesomeIcon
+                          icon={faBroom}
+                          size="sm"
+                          style={{ color: "#4f88a1", cursor: "pointer" }}
+                        /> Vaciar
+                      </Button>
+              }
+              </div>
+              <div>
               Total: {darFormatoNumero(totalPrecioCarrito())}
+              </div>
             </div>
             <Form.Group className="buttons-custom">
               <Button variant="primary" type="submit" className="button-custom">
