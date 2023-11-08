@@ -3,14 +3,16 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC4K_c_UUoPsi4jJKn-kzXB4mbiqr6iPNA",
-  authDomain: "shop-boutique.firebaseapp.com",
-  projectId: "shop-boutique",
-  storageBucket: "shop-boutique.appspot.com",
-  messagingSenderId: "304427320226",
-  appId: "1:304427320226:web:ac854d9077118a4a9928fb"
+  apiKey: "AIzaSyBjjDYqlTzmhFJJZhK8W3oBfTOO5ivKp3o",
+  authDomain: "shop-boutique23.firebaseapp.com",
+  projectId: "shop-boutique23",
+  storageBucket: "shop-boutique23.appspot.com",
+  messagingSenderId: "112484342046",
+  appId: "1:112484342046:web:e82ad9470fe8c1ff76d10f"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 export const db = getFirestore(app);
+

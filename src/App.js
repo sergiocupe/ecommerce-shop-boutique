@@ -3,9 +3,7 @@ import Home from "./views/Home/Home";
 import Catalogo from "./views/Catalogo/Catalogo";
 import Producto from "./views/Producto/Producto";
 import {CartContextProvider} from "./context/CartContextProvider";
-
 export default function App() {
-
   return (
     <div className="App">
       <BrowserRouter>
